@@ -36,3 +36,114 @@
     transform: rotate(360deg);
   }
 }
+.floating-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 250px;
+}
+
+.info-box {
+  margin-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  background: #a8b7bd;
+  background: linear-gradient(180deg, rgb(182, 192, 195) 0%, rgba(99, 110, 103, 0.63) 50%, rgba(7, 7, 7, 0.722) 100%);;
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.route-selector {
+  margin-bottom: 25px;
+}
+
+.label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.route-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.route-description {
+  margin-top: 10px;
+  color: #fafafa;
+  font-size: 20px;
+}
+
+.tracking-controls {
+  margin-bottom: 25px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button {
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.generate-button {
+  background-color: #0a3ce1;
+}
+
+.start-button {
+  background-color: #28a745;
+}
+
+.stop-button {
+  background-color: #dc3545;
+}
+
+.button.disabled {
+  background-color: #b4b4b4;
+  cursor: not-allowed;
+}
+
+.route-info {
+  margin-top: 25px;
+  color: #fff;
+}
+
+.map-container {
+  flex: 1;
+}
+
