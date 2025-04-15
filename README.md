@@ -1,35 +1,33 @@
-# Getting Started with Create React App
+Vehicle Tracker App 🚗
+This is a real-time vehicle tracking web application built using React and Leaflet. The app simulates vehicle movement along a pre-defined route, allowing you to visualize the vehicle's movement, rotate the vehicle marker according to the direction, and view route statistics such as distance and estimated travel time. Users can select different routes (today, yesterday, or last week) and start or stop the tracking.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
 
-## Available Scripts
+Real-Time Vehicle Tracking: Simulate live vehicle movement along a route.
 
-In the project directory, you can run:
+Rotating Marker: Vehicle marker rotates according to the direction of travel.
 
-### `npm start`
+Route Selection: Choose between different routes (today, yesterday, last week).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Route Stats: Displays route distance and estimated travel time.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Control Buttons: Start and stop tracking with a single click.
 
-### `npm test`
+Responsive Design: Optimized for both desktop and mobile viewing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Tech Stack
 
-### `npm run build`
+React: JavaScript library for building the user interface.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Leaflet: Open-source JavaScript library for interactive maps.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Axios: Promise-based HTTP client for making API requests to fetch route data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+OpenRouteService API: Provides driving directions and route data.
 
-### `npm run eject`
+CSS: For styling the app and ensuring a responsive layout.
+
+
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
