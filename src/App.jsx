@@ -214,7 +214,7 @@ function App() {
 
       {/* Map */}
       <div className="map-container">
-        <MapContainer center={vehiclePosition} zoom={14} style={{ height: '100%', width: '100%' }}>
+        <MapContainer center={vehiclePosition} zoom={15} style={{ height: '100%', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           
           <RotatingMarker position={vehiclePosition} angle={angle} />
