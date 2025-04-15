@@ -161,7 +161,7 @@ function App() {
       <div className="sidebar">
         <h2 className="sidebar-title">🚗 Vehicle Tracker</h2>
 
-        <div className="route-selector">
+        <div className="sidebar-box route-selector-box">
           <label htmlFor="route-select" className="label">
             Select Route
           </label>
@@ -180,7 +180,7 @@ function App() {
           </p>
         </div>
 
-        <div className="tracking-controls">
+        <div className="sidebar-box tracking-controls-box">
           <label className="label">Tracking Controls</label>
           <div className="button-group">
             <button onClick={handleGenerateRoute} className="button generate-button">
@@ -206,7 +206,7 @@ function App() {
         </div>
 
         {/* Distance and Time Information */}
-        <div className="route-info">
+        <div className="sidebar-box route-info-box">
           <p><strong>Distance:</strong> {routeDistance} km</p>
           <p><strong>Time:</strong> {routeTime} minutes</p>
         </div>
@@ -216,7 +216,7 @@ function App() {
       <div className="map-container">
         <MapContainer center={vehiclePosition} zoom={14} style={{ height: '100%', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          {/* Vehicle marker is always shown */}
+          
           <RotatingMarker position={vehiclePosition} angle={angle} />
           {isRouteGenerated && <Polyline positions={routeData} color="blue" weight={5} />}
         </MapContainer>
@@ -226,3 +226,5 @@ function App() {
 }
 
 export default App;
+
+
