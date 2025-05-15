@@ -4,8 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
 import axios from 'axios';
-import carIconPng from './assets/car.png'
-
+import carIconPng from './assets/car.png';
 
 const startToday = [28.6139, 77.2109];
 const endToday = [28.6219, 77.2400];
@@ -13,13 +12,13 @@ const endToday = [28.6219, 77.2400];
 const startYesterday = [28.6149, 77.2139];
 const endYesterday = [28.6210, 77.2410];
 
-const startLastWeek = [28.6100, 77.2000]; 
-const endLastWeek = [28.6300, 77.2600];   
+const startLastWeek = [28.6100, 77.2000];
+const endLastWeek = [28.6300, 77.2600];
 
 const routeInfo = {
-  today: { distance: 12, time: 25 },     
-  yesterday: { distance: 18, time: 30 },   
-  lastweek: { distance: 38, time: 90 },   
+  today: { distance: 12, time: 25 },
+  yesterday: { distance: 18, time: 30 },
+  lastweek: { distance: 38, time: 90 },
 };
 
 const fetchRoute = async (start, end) => {
@@ -51,6 +50,20 @@ const getAngle = (from, to) => {
   return (Math.atan2(dy, dx) * 180) / Math.PI;
 };
 
+const vehicleData = {
+  speed: 60,
+  latitude: 28.6139,
+  longitude: 77.2109,
+  vehicle_attributes: {
+    deviceUniqueId: 'device-001',
+    timestamp: Date.now(),
+    attributes: {
+      todayDistance: 12.34,
+      totalDistance: 1234.56,
+    },
+  },
+};
+
 function RotatingMarker({ position, angle }) {
   return (
     <Marker
@@ -65,12 +78,29 @@ function RotatingMarker({ position, angle }) {
       })}
     >
       <Popup>
-        <div>
-          <h3>Vehicle Info</h3>
-          <p><strong>Speed:</strong> 60 km/h</p>
-          <p><strong>Distance:</strong> 120 km</p>
-          <p><strong>Time Traveled:</strong> 2 hours</p>
-        </div>
+        <div className="vehicle-tracker">
+          <h2>Vehicle Tracking Details</h2>
+          
+              <h3>Vehicle Details</h3>
+              
+              <p><strong>Speed:</strong> {vehicleData.speed} km/h</p>
+            </div>
+
+            <div className="info-section">
+              <h3>Location</h3>
+              <p><strong>Latitude:</strong> {vehicleData.latitude}</p>
+              <p><strong>Longitude:</strong> {vehicleData.longitude}</p>
+            </div>
+
+            <div className="info-section">
+              <h3>Additional Information</h3>
+              <p><strong>Device ID:</strong> {vehicleData.vehicle_attributes.deviceUniqueId}</p>
+              <p><strong>Last Update:</strong> {new Date(vehicleData.vehicle_attributes.timestamp).toLocaleString()}</p>
+              <p><strong>Today's Distance:</strong> {vehicleData.vehicle_attributes.attributes.todayDistance.toFixed(2)} km</p>
+              <p><strong>Total Distance:</strong> {vehicleData.vehicle_attributes.attributes.totalDistance.toFixed(2)} km</p>
+            </div>
+         
+        
       </Popup>
     </Marker>
   );
@@ -127,7 +157,6 @@ function App() {
     setIsTracking(false);
   };
 
- 
   useEffect(() => {
     setRouteData([]);
     setIsTracking(false);
@@ -139,7 +168,6 @@ function App() {
     clearInterval(intervalRef.current);
   }, [selectedOption]);
 
-  // Movement logic
   useEffect(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
@@ -159,7 +187,7 @@ function App() {
           clearInterval(intervalRef.current);
           setIsTracking(false);
         }
-      }, 500); // Fixed speed here
+      }, 500);
     }
 
     return () => clearInterval(intervalRef.current);
@@ -167,7 +195,6 @@ function App() {
 
   return (
     <div className="app-container">
-      {/* Sidebar */}
       <div className="sidebar">
         <h2 className="sidebar-title">🚗 Vehicle Tracker</h2>
 
@@ -215,22 +242,19 @@ function App() {
           </div>
         </div>
 
-        {/* Distance and Time Information */}
         <div className="sidebar-box route-info-box">
           <p><strong>Distance:</strong> {routeDistance} km</p>
           <p><strong>Time:</strong> {routeTime} minutes</p>
         </div>
       </div>
 
-      {/* Map */}
       <div className="map-container">
         <MapContainer center={vehiclePosition} zoom={15} style={{ height: '100%', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          
+
           <RotatingMarker position={vehiclePosition} angle={angle} />
           {isRouteGenerated && <Polyline positions={routeData} color="blue" weight={5} />}
         </MapContainer>
-       
       </div>
     </div>
   );
