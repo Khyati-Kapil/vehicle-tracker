@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Polyline } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Polyline, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
 import axios from 'axios';
-import carIconPng from './assets/car.png';
+import carIconPng from './assets/car.png'
+
 
 const startToday = [28.6139, 77.2109];
-const endToday = [28.6199, 77.2400];
+const endToday = [28.6219, 77.2400];
 
 const startYesterday = [28.6149, 77.2139];
 const endYesterday = [28.6210, 77.2410];
@@ -59,10 +60,19 @@ function RotatingMarker({ position, angle }) {
         html: `<div style="transform: rotate(${angle}deg); width: 40px; height: 40px;">
                  <img src="${carIconPng}" style="width: 100%; height: 100%;" />
                </div>`,
-        iconSize: [40, 40],
+        iconSize: [50, 50],
         iconAnchor: [20, 20],
       })}
-    />
+    >
+      <Popup>
+        <div>
+          <h3>Vehicle Info</h3>
+          <p><strong>Speed:</strong> 60 km/h</p>
+          <p><strong>Distance:</strong> 120 km</p>
+          <p><strong>Time Traveled:</strong> 2 hours</p>
+        </div>
+      </Popup>
+    </Marker>
   );
 }
 
@@ -214,17 +224,16 @@ function App() {
 
       {/* Map */}
       <div className="map-container">
-        <MapContainer center={vehiclePosition} zoom={14} style={{ height: '100%', width: '100%' }}>
+        <MapContainer center={vehiclePosition} zoom={15} style={{ height: '100%', width: '100%' }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           
           <RotatingMarker position={vehiclePosition} angle={angle} />
           {isRouteGenerated && <Polyline positions={routeData} color="blue" weight={5} />}
         </MapContainer>
+       
       </div>
     </div>
   );
 }
 
 export default App;
-
-
