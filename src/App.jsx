@@ -187,7 +187,7 @@ function App() {
           clearInterval(intervalRef.current);
           setIsTracking(false);
         }
-      }, 500);
+      }, 300);
     }
 
     return () => clearInterval(intervalRef.current);
